@@ -1,5 +1,5 @@
 # Juri
-一个简单的PHP的路由框架，已用在九尾狐工作室官网（第8版）上。
+一个简单的PHP的路由框架，已用在九尾狐工作室API站上。
 
 # 目录结构
 |—— /config // 配置文件目录  
@@ -8,7 +8,7 @@
 &emsp;&emsp;|—— ...（模板目录结构见下文）  
 |—— /project // 项目目录  
 |—— /require // 插件程序目录  
-&emsp;&emsp;|—— index.php // Juri默认函数库（不可随便修改、删除！！）  
+&emsp;&emsp;|—— index.php // Juri默认函数库（不可随便删除！！）  
 |—— index.php // 程序入口（Juri核心程序）  
 
 # 使用指南
