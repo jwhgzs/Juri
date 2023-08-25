@@ -1,23 +1,19 @@
 # Juri
-一个简单的PHP的路由框架，已用在九尾狐工作室API站上。
+一个简单的 PHP 路由框架，已用在九尾狐工作室的 API 站上。
 
 # 目录结构
-|—— /config // 配置文件目录  
-&emsp;&emsp;|—— index.php // 主配置文件  
-|—— /model // 模板文件目录  
-&emsp;&emsp;|—— ...（模板目录结构见下文）  
-|—— /project // 项目目录  
-|—— /require // 插件程序目录  
-&emsp;&emsp;|—— index.php // Juri默认函数库（不可随便删除！！）  
-|—— index.php // 程序入口（Juri核心程序）  
+* **/config** // 配置文件目录  
+    * **index.php** // 主配置文件  
+* **/model** // 模板文件目录  
+    * **...**（模板目录结构见下文）  
+* **/project** // 项目目录  
+* **/require** // 插件程序目录  
+    * **index.php** // Juri默认函数库（不可随便删除！！）  
+* **index.php** // 程序入口（Juri核心程序）  
+* **pseudo-static.txt** // 伪静态配置代码  
 
 # 使用指南
-* 设置伪静态。
-```ini
-location ~ {
-  try_files 一个不可能存在的文件 index.php?__url=$uri&$args;
-}
-```
+* 设置伪静态（参见根目录下的`pseudo-static.txt`文件内容）。
 * 在主配置文件config/index.php中配置好路由规则，如下：
 ```php
 <?php
@@ -36,13 +32,13 @@ location ~ {
     }
 ?>
 ```
-* 模板目录结构（两公共部分之前即为各页面内容）  
-|—— /model  
-&emsp;&emsp;|—— /你的模板名称  
-&emsp;&emsp;&emsp;&emsp;|—— 404.php // 404页  
-&emsp;&emsp;&emsp;&emsp;|—— head.php // 公共部分头  
-&emsp;&emsp;&emsp;&emsp;|—— tail.php // 公共部分尾  
+* 模板目录结构：（页面最终渲染 = 公共部分头 + 内容 + 公共部分尾）  
+* **/model**  
+    * **/你的模板名称**  
+        * **404.php** // 404 页  
+        * **head.php** // 公共部分头  
+        * **tail.php** // 公共部分尾  
 # 默认路由规则
-* 实际访问路径：站点的解析根目录+用户访问的uri
-* 访问文件夹不会返回403，而是404
-* php文件可省略后缀
+* 实际访问路径：站点的解析根目录 + 用户访问的 URI
+* 访问文件夹不会返回 403 ，而是 404
+* PHP 文件可省略后缀
