@@ -2,15 +2,15 @@
 一个简单的 PHP 路由框架，已用在九尾狐工作室的 API 站上。
 
 # 目录结构
-* **/config** // 配置文件目录  
-    * **index.php** // 主配置文件  
-* **/model** // 模板文件目录  
-    * **...**（模板目录结构见下文）  
-* **/project** // 项目目录  
-* **/require** // 插件程序目录  
-    * **index.php** // Juri默认函数库（不可随便删除！！）  
-* **index.php** // 程序入口（Juri核心程序）  
-* **pseudo-static.txt** // 伪静态配置代码  
+* **/config**&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# 配置文件目录  
+    * **index.php**&emsp;&emsp;&emsp;# 主配置文件  
+* **/model**&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# 模板文件目录（目录结构见下文）  
+    * ...
+* **/project**&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# 项目目录  
+* **/require**&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;# 插件程序目录  
+    * **index.php**&emsp;&emsp;&emsp;# Juri默认函数库（初始代码不可随便修改和删除！！）  
+* **index.php**&emsp;&emsp;&emsp;&emsp;&emsp;# 程序入口（Juri核心程序）  
+* **pseudo-static.txt**&emsp;&emsp;# 伪静态配置代码  
 
 # 使用指南
 * 设置伪静态（参见根目录下的`pseudo-static.txt`文件内容）。
@@ -34,10 +34,10 @@
 ```
 * 模板目录结构：（页面最终渲染 = 公共部分头 + 内容 + 公共部分尾）  
 * **/model**  
-    * **/你的模板名称**  
-        * **404.php** // 404 页  
-        * **head.php** // 公共部分头  
-        * **tail.php** // 公共部分尾  
+    * **/modelName**&emsp;&emsp;&emsp;# 名为你的模板名称  
+        * **404.php**&emsp;&emsp;&emsp;# 404 页  
+        * **head.php**&emsp;&emsp;# 公共部分头  
+        * **tail.php**&emsp;&emsp;&emsp;# 公共部分尾  
 # 默认路由规则
 * 实际访问路径：站点的解析根目录 + 用户访问的 URI
 * 访问文件夹不会返回 403 ，而是 404
