@@ -20,15 +20,15 @@
     class c {
         public static $ROUTER = [ // 路由规则配置
             '(*.)\.jwhgzs\.com' => [ // 格式：域名（正则） => 配置
-                '/www', // 第一项为解析根目录（/project项目目录的子目录）
-                'default' // 第二项为模板名称（/model模板目录的子目录名，无需加/）
+                '/www', // 第一项为解析根目录（ /project 项目目录的子目录）
+                'default' // 第二项为模板名称（ /model 模板目录的子目录名，无需加/）
             ],
             '(*.)\.jwh\.su' => [
                 '/su'
-                // 模板名称可不填，默认为default
+                // 模板名称可不填，默认为 default
             ]
         ];
-        public static $CROSS_DOMAIN_CONTROL = true; // 是否开启Juri动态跨域设置（默认允许在上面的$ROUTER中指定的域名跨域）
+        public static $CROSS_DOMAIN_CONTROL = true; // 是否开启动态跨域检测（默认允许在上面的 $ROUTER 中指定的域名跨域）
     }
 ?>
 ```
