@@ -68,7 +68,7 @@
     include_once $__model_url . '/head.php';
     $finfo = finfo_open(FILEINFO_MIME);
     $mime = finfo_file($finfo, $__urlData['url']);
-    if ($mime == 'text/x-php; charset=utf-8')
+    if (pathinfo($__urlData['url'])['extension'] == 'php')
         include_once $__urlData['url'];
     else {
         header('Content-type: ' . $mime);
