@@ -66,6 +66,14 @@
     $__urlData = __parseUrl($__url, $__host);
     $__model_url = __DIR__ . '/model/' . $__urlData['model'];
     include_once $__model_url . '/head.php';
-    include_once $__urlData['url'];
+    $finfo = finfo_open(FILEINFO_MIME);
+    $mime = finfo_file($finfo, $__urlData['url']);
+    if ($mime == 'text/x-php; charset=utf-8')
+        include_once $__urlData['url'];
+    else {
+        header('Content-type: ' . $mime);
+        echo(file_get_contents($__urlData['url']));
+    }
+    finfo_close($finfo);
     include_once $__model_url . '/tail.php';
 ?>
