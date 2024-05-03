@@ -13,32 +13,35 @@
 * **pseudo-static.txt**&emsp;&emsp;# 伪静态配置代码  
 
 # 使用指南
-* 设置伪静态（参见根目录下的`pseudo-static.txt`文件内容）。
-* 在主配置文件config/index.php中配置好路由规则，如下：
+* 设置伪静态（参见根目录下的 `pseudo-static.txt` 文件内容）。
+* 在主配置文件 `config/index.php` 中配置好路由规则，如下：
 ```php
 <?php
     class c {
         public static $ROUTER = [ // 路由规则配置
-            '(*.)\.jwhgzs\.com' => [ // 格式：域名（正则） => 配置
-                '/www', // 第一项为解析根目录（ /project 项目目录的子目录）
-                'default' // 第二项为模板名称（ /model 模板目录的子目录名，无需加/）
+            'jwhgzs.com' => [ // 格式：域名 => 配置
+                '/www/$', // 第 0 项为解析目标，Juri 将会在 $ 的位置填上用户提供的路径。以 /project 为根路径
+                'default' // 第 1 项为模板名称（ /model 模板名称）
             ],
-            '(*.)\.jwh\.su' => [
-                '/su'
-                // 模板名称可不填，默认为 default
+            '*.jwh.su' => [
+                '/shortUrl',
+                // 模板名称可不填，不填则默认为 default
+                '/path/to/*' => [ // 可嵌套一层来处理子目录。支持通配符 * 。
+                    '/sw?full_path=$', // 注意嵌套设置中的解析目标也是以 /project 为根路径
+                    'default'
+                ]
             ]
         ];
-        public static $CROSS_DOMAIN_CONTROL = true; // 是否开启动态跨域检测（默认允许在上面的 $ROUTER 中指定的域名跨域）
     }
 ?>
 ```
-* 模板目录结构：（页面最终渲染 = 公共部分头 + 内容 + 公共部分尾）  
+* 模板目录结构：（页面最终渲染 = 模板头 + 内容 + 模板尾）  
 * **/model**  
     * **/modelName**&emsp;&emsp;&emsp;# 名为你的模板名称  
         * **404.php**&emsp;&emsp;&emsp;# 404 页  
-        * **head.php**&emsp;&emsp;# 公共部分头  
-        * **tail.php**&emsp;&emsp;&emsp;# 公共部分尾  
-# 默认路由规则
-* 实际访问路径：站点的解析根目录 + 用户访问的 URI
+        * **head.php**&emsp;&emsp;# 模板头  
+        * **tail.php**&emsp;&emsp;&emsp;# 模板尾  
+# 其他
 * 访问文件夹不会返回 403 ，而是 404
 * PHP 文件可省略后缀
+* Juri 对所有表示路径的字符串都进行了一定程度的格式化
