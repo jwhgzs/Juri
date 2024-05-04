@@ -19,16 +19,16 @@
 <?php
     class c {
         public static $ROUTER = [ // 路由规则配置
-            'jwhgzs.com' => [ // 格式：域名 => 配置
-                '/www/$', // 第 0 项为解析目标，Juri 将会在 $ 的位置填上用户提供的路径。以 /project 为根路径
-                'default' // 第 1 项为模板名称（ /model 模板名称）
+            'example.com' => [ // 域名支持通配符 *
+                0 => '/www/$', // 第 0 项为解析目标，Juri 将会在 $ 的位置填上用户提供的路径。以 /project 为根路径
+                1 => 'default' // 第 1 项为模板名称（ /model 模板名称）
             ],
-            '*.jwh.su' => [
-                '/shortUrl',
+            'example.net|*.example.net' => [ // 用 | 来分隔多个域名
+                0 => '/example',
                 // 模板名称可不填，不填则默认为 default
-                '/path/to/*' => [ // 可嵌套一层来处理子目录。支持通配符 * 。
-                    '/sw?full_path=$', // 注意嵌套设置中的解析目标也是以 /project 为根路径
-                    'default'
+                '/path/to/[dir_name]' => [ // 可嵌套一层来处理子目录。支持通配符 * 或 [var_name]
+                    0 => '/www/foo?dir=${dir_name}', // 注意嵌套设置中的解析目标也是以 /project 为根路径
+                    1 => 'default'
                 ]
             ]
         ];
@@ -37,11 +37,11 @@
 ```
 * 模板目录结构：（页面最终渲染 = 模板头 + 内容 + 模板尾）  
 * **/model**  
-    * **/modelName**&emsp;&emsp;&emsp;# 名为你的模板名称  
+    * **/modelName**&emsp;&emsp;&emsp;# 你的模板名称  
         * **404.php**&emsp;&emsp;&emsp;# 404 页  
         * **head.php**&emsp;&emsp;# 模板头  
         * **tail.php**&emsp;&emsp;&emsp;# 模板尾  
 # 其他
 * 访问文件夹不会返回 403 ，而是 404
 * PHP 文件可省略后缀
-* Juri 对所有表示路径的字符串都进行了一定程度的格式化
+* Juri 对表示路径的字符串都进行了一定程度的格式化
