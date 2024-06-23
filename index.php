@@ -48,15 +48,15 @@
         unset($__pathmode);
         return true;
     }
-    function __dictReplace($dict = [], $str = '', $urlencode = false) {
+    function __dictReplace($dict = [], $str = '', $url_encode = false) {
         global $__dict;
         $__dict = $dict;
         $res = preg_replace_callback(
             '/\\$\\{(.+?)\\}/iu',
             function ($matches) {
-                global $__dict;
+                global $__dict, $url_encode;
                 $key = $matches[1][0];
-                if ($urlencode)
+                if ($url_encode)
                     return urlencode($__dict[$key]);
                 else
                     return $__dict[$key];
